@@ -1,13 +1,12 @@
 <div align="center">
 
-# Language / 语言
-[🇨🇳 中文文档](README_ZH.md) | [🇺🇸 English Documentation](README.md)
-
 <h1>SSL Certificate Generator Web Tool</h1>
+
+### [🇨🇳 中文文档](README_ZH.md) | [🇺🇸 English Documentation](README.md)
 
 🔒 **Secure, Convenient, Professional Self-Signed SSL Certificate Generation Tool**
 
-A modern self-signed SSL certificate generation web tool with Apple tech-style design, supporting Docker containerized deployment. This project is 100% open source, with all certificate generation processes completed locally to ensure data security.
+A modern self-signed SSL certificate generation web tool with Apple tech-style design, supporting Docker containerized deployment.
 
 [![Docker](https://img.shields.io/badge/Docker-Supported-blue.svg)](https://www.docker.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)

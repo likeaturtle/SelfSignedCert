@@ -1,13 +1,12 @@
 <div align="center">
 
-# Language / 语言
-[🇨🇳 中文文档](README_ZH.md) | [🇺🇸 English Documentation](README.md)
-
 <h1>SSL证书生成器 Web 工具</h1>
+
+### [🇨🇳 中文文档](README_ZH.md) | [🇺🇸 English Documentation](README.md)
 
 🔒 **安全、便捷、专业的自签SSL证书生成工具**
 
-一个现代化的自签SSL证书生成Web工具，采用科技苹果风格设计，支持Docker容器化部署。本项目100%开源，所有证书生成过程在本地完成，确保数据安全。
+一个现代化的自签SSL证书生成Web工具，采用科技苹果风格设计，支持Docker容器化部署。
 
 [![Docker](https://img.shields.io/badge/Docker-支持-blue.svg)](https://www.docker.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
