@@ -1,128 +1,131 @@
 <div align="center">
 
-<h1>SSL证书生成器 Web 工具</h1>
+# Language / 语言
+[🇨🇳 中文文档](README_ZH.md) | [🇺🇸 English Documentation](README.md)
 
-🔒 **安全、便捷、专业的自签SSL证书生成工具**
+<h1>SSL Certificate Generator Web Tool</h1>
 
-一个现代化的自签SSL证书生成Web工具，采用科技苹果风格设计，支持Docker容器化部署。本项目100%开源，所有证书生成过程在本地完成，确保数据安全。
+🔒 **Secure, Convenient, Professional Self-Signed SSL Certificate Generation Tool**
 
-[![Docker](https://img.shields.io/badge/Docker-支持-blue.svg)](https://www.docker.com/)
+A modern self-signed SSL certificate generation web tool with Apple tech-style design, supporting Docker containerized deployment. This project is 100% open source, with all certificate generation processes completed locally to ensure data security.
+
+[![Docker](https://img.shields.io/badge/Docker-Supported-blue.svg)](https://www.docker.com/)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
-[![Status](https://img.shields.io/badge/Status-生产就绪-brightgreen.svg)](#)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)](#)
 
 </div>
 
-## 📑 目录
+## 📑 Table of Contents
 
-### 🚀 快速上手
-- [⚡ 快速开始](#-快速开始)
-- [🏗️ 部署方式](#️-部署方式)
-- [📋 使用指南](#-使用指南)
+### 🚀 Getting Started
+- [⚡ Quick Start](#-quick-start)
+- [🏗️ Deployment Methods](#️-deployment-methods)
+- [📋 Usage Guide](#-usage-guide)
 
-### 📖 功能介绍  
-- [✨ 功能特点](#-功能特点)
-- [🔧 API接口](#-api接口)
-- [🎯 队列管理](#-队列管理)
+### 📖 Features Introduction  
+- [✨ Key Features](#-key-features)
+- [🔧 API Endpoints](#-api-endpoints)
+- [🎯 Queue Management](#-queue-management)
 
-### 🛡️ 安全与性能
-- [🛡️ 安全特性](#️-安全特性)
-- [⚙️ 并发控制](#️-并发控制)
-- [📊 性能监控](#-性能监控)
+### 🛡️ Security & Performance
+- [🛡️ Security Features](#️-security-features)
+- [⚙️ Concurrency Control](#️-concurrency-control)
+- [📊 Performance Monitoring](#-performance-monitoring)
 
-### 🔧 开发与维护
-- [🏗️ 项目架构](#️-项目架构)
-- [🔍 故障排除](#-故障排除)
-- [🤝 参与贡献](#-参与贡献)
+### 🔧 Development & Maintenance
+- [🏗️ Project Architecture](#️-project-architecture)
+- [🔍 Troubleshooting](#-troubleshooting)
+- [🤝 Contributing](#-contributing)
 
-## ⚡ 快速开始
+## ⚡ Quick Start
 
-### 🐳 Docker部署（推荐）
+### 🐳 Docker Deployment (Recommended)
 ```bash
-# 克隆项目
+# Clone the project
 git clone <repository-url>
 cd ssl-cert-web
 
-# 一键启动
+# One-click startup
 docker-compose up -d
 ```
 
-### 💻 本地开发
+### 💻 Local Development
 ```bash
-# 安装依赖
+# Install dependencies
 npm install
 
-# 开发模式（支持热重载）
+# Development mode (supports hot reload)
 npm run dev
 
-# 生产模式
+# Production mode
 npm start
 ```
 
-### 🌐 访问应用
-- **主界面**：http://localhost:3000
-- **健康检查**：http://localhost:3000/api/health
-- **队列状态**：http://localhost:3000/api/queue-status
+### 🌐 Access Application
+- **Main Interface**: http://localhost:3000
+- **Health Check**: http://localhost:3000/api/health
+- **Queue Status**: http://localhost:3000/api/queue-status
 
-## ✨ 功能特点
+## ✨ Key Features
 
-### 🔒 安全优先
-- **权限控制**：非root用户运行容器，遵循最小权限原则
-- **自动清理**：临时文件1小时后自动清理，下载后1分钟延迟清理
-- **输入验证**：完整的参数验证和XSS防护机制
-- **安全传输**：支持HTTPS部署和安全头配置
+### 🔒 Security First
+- **Permission Control**: Non-root user container execution, following least privilege principle
+- **Auto Cleanup**: Temporary files automatically cleaned after 1 hour, 1-minute delay after download
+- **Input Validation**: Complete parameter validation and XSS protection mechanisms
+- **Secure Transport**: Supports HTTPS deployment and security header configuration
 
-### 🎨 现代设计
-- **科技苹果风**：现代化界面设计，配色简洁高级
-- **响应式布局**：完美适配桌面、平板、移动设备
-- **横版设计**：左右分栏布局，信息层次清晰
-- **动画效果**：流畅的状态反馈和交互动画
+### 🎨 Modern Design
+- **Apple Tech Style**: Modern interface design with clean and premium color scheme
+- **Responsive Layout**: Perfect adaptation for desktop, tablet, and mobile devices
+- **Landscape Design**: Left-right split layout with clear information hierarchy
+- **Animation Effects**: Smooth status feedback and interactive animations
 
-### ⚡ 高性能架构
-- **并发控制**：智能3并发限制，每分钟10请求速率控制
-- **队列管理**：超负荷时自动排队，显示等待时间和位置
-- **资源管理**：自动内存清理，临时文件生命周期管理
-- **容器化**：Docker部署，环境隔离，一键启动
+### ⚡ High-Performance Architecture
+- **Concurrency Control**: Smart 3-concurrent limit with 10 requests per minute rate control
+- **Queue Management**: Auto-queue when overloaded, displays wait time and position
+- **Resource Management**: Auto memory cleanup, temporary file lifecycle management
+- **Containerization**: Docker deployment, environment isolation, one-click startup
 
-### 📦 开发友好
-- **一键部署**：Docker Compose支持，零配置启动
-- **热重载**：开发模式支持文件变更自动重启
-- **完整API**：RESTful接口设计，支持编程调用
-- **日志记录**：详细的操作日志和错误追踪
+### 📦 Developer Friendly
+- **One-Click Deployment**: Docker Compose support, zero-configuration startup
+- **Hot Reload**: Development mode supports automatic restart on file changes
+- **Complete API**: RESTful interface design, supports programmatic calls
+- **Logging**: Detailed operation logs and error tracking
 
-## 🏗️ 部署方式
+## 🏗️ Deployment Methods
 
-### 🐳 Docker部署（推荐）
+### 🐳 Docker Deployment (Recommended)
 
 ```bash
-# 克隆项目
+# Clone the project
 git clone <repository-url>
 cd ssl-cert-web
 
-# 一键启动
+# One-click startup
 docker-compose up -d
 
-# 查看运行状态
+# Check running status
 docker-compose ps
 
-# 查看日志
+# View logs
 docker-compose logs -f
 
-# 停止服务
+# Stop service
 docker-compose down
 ```
 
-### ☁️ 云服务器部署
+### ☁️ Cloud Server Deployment
 
 ```bash
-# 1. 上传项目到服务器
+# 1. Upload project to server
 scp -r ssl-cert-web user@server:/path/to/
 
-# 2. 在服务器上部署
+# 2. Deploy on server
 cd /path/to/ssl-cert-web
 docker-compose up -d
 
-# 3. 配置防火墙
+# 3. Configure firewall
 # Ubuntu/Debian:
 sudo ufw allow 3000/tcp
 # CentOS/RHEL:
@@ -130,95 +133,95 @@ sudo firewall-cmd --permanent --add-port=3000/tcp
 sudo firewall-cmd --reload
 ```
 
-### 💻 本地开发部署
+### 💻 Local Development Deployment
 
 ```bash
-# 安装依赖
+# Install dependencies
 npm install
 
-# 开发模式（支持热重载）
+# Development mode (supports hot reload)
 npm run dev
 
-# 生产模式
+# Production mode
 npm start
 
-# 后台运行（可选）
+# Background running (optional)
 nohup npm start > app.log 2>&1 &
 ```
 
-### 🔧 高级配置
+### 🔧 Advanced Configuration
 
 ```bash
-# 自定义端口
+# Custom port
 PORT=8080 npm start
 
-# 自定义环境
+# Custom environment
 NODE_ENV=production npm start
 
-# Docker自定义配置
-docker-compose up -d --build  # 强制重新构建
+# Docker custom configuration
+docker-compose up -d --build  # Force rebuild
 ```
 
-### 🌐 访问应用
+### 🌐 Access Application
 
-部署完成后，可以通过以下地址访问：
+After deployment, access via the following addresses:
 
-- **主界面**：http://localhost:3000
-- **健康检查**：http://localhost:3000/api/health
-- **队列状态**：http://localhost:3000/api/queue-status
+- **Main Interface**: http://localhost:3000
+- **Health Check**: http://localhost:3000/api/health
+- **Queue Status**: http://localhost:3000/api/queue-status
 
-## 📋 使用指南
+## 📋 Usage Guide
 
-### 🗥️ 配置选项
+### 🗥️ Configuration Options
 
-#### 基本配置
-- **主域名**：证书的主要域名（必填）
-- **证书名称**：在浏览器中显示的名称（可选）
-- **泛域名**：支持*.domain.com格式（可选）
-- **IP地址**：支持多个IP地址，逗号分隔（可选）
+#### Basic Configuration
+- **Primary Domain**: Main domain for the certificate (required)
+- **Certificate Name**: Name displayed in browser (optional)
+- **Wildcard Domain**: Supports *.domain.com format (optional)
+- **IP Addresses**: Supports multiple IP addresses, comma-separated (optional)
 
-#### CA配置
-- **CA名称**：证书颁发机构名称（默认：ACENova CA）
-- **CA组织**：颁发机构组织名称（默认：ACENova）
-- **CA单位**：颁发机构部门（默认：ACENova Department）
-- **国家代码**：两位国家代码（默认：CN）
+#### CA Configuration
+- **CA Name**: Certificate Authority name (default: ACENova CA)
+- **CA Organization**: Certificate Authority organization (default: ACENova)
+- **CA Unit**: Certificate Authority department (default: ACENova Department)
+- **Country Code**: Two-letter country code (default: CN)
 
-#### 高级配置
-- **加密位数**：2048位或4096位（默认：2048位）
-- **有效期**：证书有效期天数（默认：365天）
+#### Advanced Configuration
+- **Encryption Bits**: 2048-bit or 4096-bit (default: 2048-bit)
+- **Validity Period**: Certificate validity in days (default: 365 days)
 
-### 生成和下载
-1. 填写必要的配置项
-2. 点击"生成证书"按钮
-3. 等待生成完成（支持队列排队）
-4. 点击"下载证书包"获取ZIP文件
+### Generation and Download
+1. Fill in the necessary configuration items
+2. Click "Generate Certificate" button
+3. Wait for generation completion (supports queue waiting)
+4. Click "Download Certificate Package" to get ZIP file
 
-### 📝 证书文件说明
+### 📝 Certificate Files Description
 
-下载的ZIP包含以下文件：
+The downloaded ZIP contains the following files:
 
-- `ca-cert.pem` - CA根证书（需要安装到系统信任根证书）
-- `ca-key.pem` - CA私钥
-- `server-cert.pem` - 服务器证书
-- `server-key.pem` - 服务器私钥
-- `fullchain.pem` - 完整证书链
-- `openssl.cnf` - OpenSSL配置文件
+- `ca-cert.pem` - CA root certificate (needs to be installed in system trusted root certificates)
+- `ca-key.pem` - CA private key
+- `server-cert.pem` - Server certificate
+- `server-key.pem` - Server private key
+- `fullchain.pem` - Complete certificate chain
+- `openssl.cnf` - OpenSSL configuration file
 
-### 🛡️ 安装证书指南
+### 🛡️ Certificate Installation Guide
 
-#### Windows系统
-1. 双击 `ca-cert.pem` 文件
-2. 点击"安装证书"
-3. 选择"本地计算机"
-4. 将证书放入"受信任的根证书颁发机构"
+#### Windows System
+1. Double-click the `ca-cert.pem` file
+2. Click "Install Certificate"
+3. Select "Local Machine"
+4. Place certificate in "Trusted Root Certification Authorities"
 
-#### macOS系统
-1. 双击 `ca-cert.pem` 文件，打开钥匙串访问
-2. 在证书上右键点击，选择"显示简介"
-3. 展开"信任"选项
-4. 设置为"始终信任"
+#### macOS System
+1. Double-click the `ca-cert.pem` file to open Keychain Access
+2. Right-click on the certificate and select "Get Info"
+3. Expand the "Trust" option
+4. Set to "Always Trust"
 
-#### Linux系统
+#### Linux System
 ```bash
 # Ubuntu/Debian
 sudo cp ca-cert.pem /usr/local/share/ca-certificates/ssl-cert-ca.crt
@@ -229,9 +232,9 @@ sudo cp ca-cert.pem /etc/pki/ca-trust/source/anchors/
 sudo update-ca-trust
 ```
 
-## 🔧 API接口
+## 🔧 API Endpoints
 
-### 生成证书
+### Generate Certificate
 ```http
 POST /api/generate-certificate
 Content-Type: application/json
@@ -250,63 +253,63 @@ Content-Type: application/json
 }
 ```
 
-### 下载证书
+### Download Certificate
 ```http
 GET /api/download-certificate/:id
 ```
 
-### 队列状态查询
+### Queue Status Query
 ```http
 GET /api/queue-status
 ```
 
-### 健康检查
+### Health Check
 ```http
 GET /api/health
 ```
 
-## 🛡️ 安全特性
+## 🛡️ Security Features
 
-### 数据安全
-- 临时文件未下载情况下**1小时**后自动清理
-- 用户下载证书zip压缩包后**1**分钟后自动清理
+### Data Security
+- Temporary files automatically cleaned after **1 hour** if not downloaded
+- Certificate ZIP packages automatically cleaned **1 minute** after user download
 
-### 容器安全
-- 非root用户运行（nodejs:1001）
-- 最小权限原则
-- 网络隔离
-- 健康检查和自动重启
+### Container Security
+- Non-root user execution (nodejs:1001)
+- Least privilege principle
+- Network isolation
+- Health checks and auto-restart
 
-### 应用安全
-- 输入参数验证
-- XSS防护
-- 错误信息过滤
-- 超时保护
+### Application Security
+- Input parameter validation
+- XSS protection
+- Error message filtering
+- Timeout protection
 
-## ⚙️ 并发控制
+## ⚙️ Concurrency Control
 
-### 🎛️ 核心配置
+### 🎛️ Core Configuration
 ```javascript
-const MAX_CONCURRENT_REQUESTS = 3;    // 最大并发证书生成数
-const MAX_REQUESTS_PER_MINUTE = 10;   // 每IP每分钟最大请求数
-const MAX_TEMP_DIRS = 50;             // 最大临时目录数量
-const QUEUE_TIMEOUT = 60000;          // 队列超时时间（1分钟）
+const MAX_CONCURRENT_REQUESTS = 3;    // Maximum concurrent certificate generations
+const MAX_REQUESTS_PER_MINUTE = 10;   // Maximum requests per IP per minute
+const MAX_TEMP_DIRS = 50;             // Maximum temporary directories
+const QUEUE_TIMEOUT = 60000;          // Queue timeout (1 minute)
 ```
 
-### 🔄 并发策略
-- **智能排队**：超出并发限制的请求自动进入队列
-- **IP限流**：基于客户端IP的速率限制，防止恶意请求
-- **资源保护**：临时目录数量限制，防止磁盘空间耗尽
-- **超时处理**：队列请求1分钟超时，自动清理
-- **优雅降级**：系统繁忙时返回HTTP 202状态码
+### 🔄 Concurrency Strategy
+- **Smart Queuing**: Requests exceeding concurrency limits automatically enter queue
+- **IP Rate Limiting**: Rate limiting based on client IP to prevent malicious requests
+- **Resource Protection**: Temporary directory count limit to prevent disk space exhaustion
+- **Timeout Handling**: Queue requests timeout after 1 minute with automatic cleanup
+- **Graceful Degradation**: Returns HTTP 202 status when system is busy
 
-### 📊 性能优化
-- **异步处理**：非阻塞IO操作，提高并发性能
-- **内存管理**：定期清理过期的请求计数器
-- **资源监控**：实时监控正在处理的请求和队列状态
-- **自动清理**：每30分钟清理过期临时文件
+### 📊 Performance Optimization
+- **Asynchronous Processing**: Non-blocking IO operations for improved concurrency
+- **Memory Management**: Regular cleanup of expired request counters
+- **Resource Monitoring**: Real-time monitoring of processing requests and queue status
+- **Auto Cleanup**: Cleanup expired temporary files every 30 minutes
 
-### 📈 监控指标
+### 📈 Monitoring Metrics
 ```json
 {
   "currentProcessing": 2,
@@ -317,33 +320,33 @@ const QUEUE_TIMEOUT = 60000;          // 队列超时时间（1分钟）
 }
 ```
 
-## 🎯 队列管理
+## 🎯 Queue Management
 
-### 🚦 智能队列机制
-当并发请求达到上限时，系统自动启用队列机制：
+### 🚦 Smart Queue Mechanism
+When concurrent requests reach the limit, the system automatically enables queue mechanism:
 
-#### 队列特性
-- **自动排队**：超出并发限制时自动加入队列
-- **位置显示**：实时显示队列中的位置
-- **等待预估**：智能估算等待时间
-- **状态同步**：队列状态实时更新
-- **超时保护**：1分钟超时自动清理
+#### Queue Features
+- **Auto Queuing**: Automatically joins queue when concurrency limit exceeded
+- **Position Display**: Real-time display of queue position
+- **Wait Estimation**: Smart estimation of wait time
+- **Status Sync**: Queue status updates in real-time
+- **Timeout Protection**: 1-minute timeout with automatic cleanup
 
-#### 用户体验
-- **状态面板**：美观的队列状态显示面板
-- **进度指示**：清晰的处理进度展示
-- **响应式设计**：适配各种屏幕尺寸
-- **科技风格**：与整体界面风格保持一致
-- **手动关闭**：用户可手动关闭状态面板
+#### User Experience
+- **Status Panel**: Beautiful queue status display panel
+- **Progress Indicator**: Clear processing progress display
+- **Responsive Design**: Adapts to various screen sizes
+- **Tech Style**: Consistent with overall interface style
+- **Manual Close**: Users can manually close status panel
 
-### 📡 API响应示例
+### 📡 API Response Examples
 
-#### 加入队列（HTTP 202）
+#### Join Queue (HTTP 202)
 ```json
 {
   "success": false,
   "queued": true,
-  "message": "服务器正忙，您的请求已加入队列",
+  "message": "Server is busy, your request has been queued",
   "queuePosition": 2,
   "estimatedWaitTime": 12,
   "currentProcessing": 3,
@@ -351,7 +354,7 @@ const QUEUE_TIMEOUT = 60000;          // 队列超时时间（1分钟）
 }
 ```
 
-#### 队列状态查询
+#### Queue Status Query
 ```json
 {
   "success": true,
@@ -364,164 +367,164 @@ const QUEUE_TIMEOUT = 60000;          // 队列超时时间（1分钟）
 }
 ```
 
-### 🔧 队列配置
+### 🔧 Queue Configuration
 ```javascript
-// 可在server.js中调整队列参数
+// Queue parameters can be adjusted in server.js
 const QUEUE_CONFIG = {
-  maxConcurrent: 3,           // 最大并发数
-  timeoutMs: 60000,          // 超时时间
-  maxQueueLength: 10,        // 最大队列长度
-  estimatedTaskTime: 6000    // 预估任务处理时间
+  maxConcurrent: 3,           // Maximum concurrent count
+  timeoutMs: 60000,          // Timeout duration
+  maxQueueLength: 10,        // Maximum queue length
+  estimatedTaskTime: 6000    // Estimated task processing time
 };
 ```
 
-## 🔍 故障排除
+## 🔍 Troubleshooting
 
-### 常见问题
+### Common Issues
 
-**Q: 证书生成失败**
-- 检查域名格式是否正确
-- 检查IP地址格式是否正确
-- 查看容器日志获取详细错误信息
+**Q: Certificate generation failed**
+- Check if domain format is correct
+- Check if IP address format is correct
+- View container logs for detailed error information
 
-**Q: 浏览器显示证书不安全**
-- 需要将CA证书安装到系统信任根证书中
+**Q: Browser shows certificate as insecure**
+- Need to install CA certificate to system trusted root certificates
 
-**Q: 队列等待时间过长**
-- 检查服务器资源使用情况
-- 考虑调整并发控制参数
+**Q: Queue wait time too long**
+- Check server resource usage
+- Consider adjusting concurrency control parameters
 
-**Q: 下载失败**
-- 确认证书ID是否正确
-- 注意文件会在1小时后自动清理
+**Q: Download failed**
+- Confirm certificate ID is correct
+- Note that files are automatically cleaned after 1 hour
 
-### 日志查看
+### Log Viewing
 ```bash
-# 查看容器日志
+# View container logs
 docker logs ssl-cert-generator
 
-# 实时查看日志
+# Real-time log viewing
 docker logs -f ssl-cert-generator
 ```
 
-### 性能监控
+### Performance Monitoring
 ```bash
-# 查看容器状态
+# View container status
 docker ps
 
-# 查看资源使用
+# View resource usage
 docker stats ssl-cert-generator
 
-# 健康检查
+# Health check
 curl http://localhost:3000/api/health
 ```
 
-## 🏗️ 项目架构
+## 🏗️ Project Architecture
 
-### 目录结构
+### Directory Structure
 ```
 ssl-cert-web/
-├── frontend/              # 前端文件
-│   ├── index.html        # 主页面
-│   ├── style.css         # 样式文件
-│   └── script.js         # 交互脚本
-├── backend/              # 后端服务
-│   └── server.js         # Express服务器
-├── scripts/              # 证书生成脚本
-│   └── generate_cert.sh  # 优化的生成脚本
-├── temp/                 # 临时文件目录
-├── deploy.sh             # 一键部署脚本
-├── Dockerfile            # 容器配置
-├── docker-compose.yml    # 编排配置
-├── package.json          # 项目依赖
-└── README.md             # 项目说明
+├── frontend/              # Frontend files
+│   ├── index.html        # Main page
+│   ├── style.css         # Style file
+│   └── script.js         # Interactive script
+├── backend/              # Backend service
+│   └── server.js         # Express server
+├── scripts/              # Certificate generation scripts
+│   └── generate_cert.sh  # Optimized generation script
+├── temp/                 # Temporary files directory
+├── deploy.sh             # One-click deployment script
+├── Dockerfile            # Container configuration
+├── docker-compose.yml    # Orchestration configuration
+├── package.json          # Project dependencies
+└── README.md             # Project documentation
 ```
 
-### 技术栈
-- **前端**：HTML5 + CSS3 + 原生JavaScript
-- **后端**：Node.js + Express
-- **容器化**：Docker + Docker Compose
-- **证书生成**：OpenSSL + Bash脚本
+### Tech Stack
+- **Frontend**: HTML5 + CSS3 + Vanilla JavaScript
+- **Backend**: Node.js + Express
+- **Containerization**: Docker + Docker Compose
+- **Certificate Generation**: OpenSSL + Bash Script
 
-### 核心特性
-- 现代化苹果风格设计
-- 完整的并发控制和队列管理
-- 企业级安全配置
-- 自动化健康监控
-- 一键部署和维护
+### Core Features
+- Modern Apple-style design
+- Complete concurrency control and queue management
+- Enterprise-level security configuration
+- Automated health monitoring
+- One-click deployment and maintenance
 
-## 📊 性能监控
+## 📊 Performance Monitoring
 
-### 📈 监控指标
+### 📈 Monitoring Metrics
 
-#### 实时状态
-- **并发请求数**：当前正在处理的证书生成任务
-- **队列长度**：等待处理的请求数量
-- **系统负载**：CPU和内存使用情况
-- **临时文件**：temp目录中的文件数量
+#### Real-time Status
+- **Concurrent Requests**: Currently processing certificate generation tasks
+- **Queue Length**: Number of requests waiting to be processed
+- **System Load**: CPU and memory usage
+- **Temporary Files**: Number of files in temp directory
 
-#### 健康检查
+#### Health Check
 ```bash
-# 基本健康检查
+# Basic health check
 curl http://localhost:3000/api/health
 
-# 队列状态查询
+# Queue status query
 curl http://localhost:3000/api/queue-status
 
-# Docker容器健康检查
+# Docker container health check
 docker ps --format "table {{.Names}}\t{{.Status}}"
 ```
 
-### 🧹 文件生命周期管理
+### 🧹 File Lifecycle Management
 
-#### 清理时间表
+#### Cleanup Schedule
 ```
-证书生成 ──► 可下载(1小时) ──► 自动清理
-     │                      │
-     └── 下载完成 ──► 延迟1分钟 ──► 立即清理
+Certificate Generation ──► Available for Download (1 hour) ──► Auto Cleanup
+         │                                  │
+         └── Download Complete ──► 1-minute Delay ──► Immediate Cleanup
 ```
 
-#### 清理策略
-- **定期清理**：每30分钟执行一次全量扫描
-- **保留时间**：临时文件保留1小时
-- **下载清理**：下载完成后延迟1分钟清理
-- **安全保护**：正在处理的文件受保护不会被清理
-- **容量控制**：最多保留50个临时目录
+#### Cleanup Strategy
+- **Regular Cleanup**: Full scan every 30 minutes
+- **Retention Time**: Temporary files retained for 1 hour
+- **Download Cleanup**: 1-minute delayed cleanup after download completion
+- **Security Protection**: Files being processed are protected from cleanup
+- **Capacity Control**: Maximum 50 temporary directories retained
 
-#### 清理日志
+#### Cleanup Logs
 ```javascript
-// 清理日志示例
-console.log('清理过期临时目录: bd58cdaa-91f7-4ffd-8159-fc681cf8c246');
-console.log('定期清理完成，清理了 3 个过期目录');
-console.log('跳过正在处理的目录: c008cdb3-e712-4b77-9eb2-feeb880cd3f5');
+// Cleanup log examples
+console.log('Cleaning expired temp directory: bd58cdaa-91f7-4ffd-8159-fc681cf8c246');
+console.log('Regular cleanup completed, cleaned 3 expired directories');
+console.log('Skipping directory being processed: c008cdb3-e712-4b77-9eb2-feeb880cd3f5');
 ```
 
-### 📊 性能优化建议
+### 📊 Performance Optimization Recommendations
 
-#### 系统资源
-- **CPU**：建议2核心以上
-- **内存**：建议1GB以上
-- **磁盘**：建议为临时文件预留5GB空间
+#### System Resources
+- **CPU**: Recommended 2+ cores
+- **Memory**: Recommended 1GB+
+- **Disk**: Recommended 5GB reserved for temporary files
 
-#### 并发调优
+#### Concurrency Tuning
 ```javascript
-// 根据服务器配置调整并发参数
+// Adjust concurrency parameters based on server configuration
 const performanceConfig = {
-  // 低配置服务器 (1-2核, 1-2GB内存)
+  // Low-end servers (1-2 cores, 1-2GB memory)
   lowEnd: { concurrent: 2, rateLimit: 5 },
   
-  // 中等配置服务器 (2-4核, 2-4GB内存)
+  // Medium servers (2-4 cores, 2-4GB memory)
   medium: { concurrent: 3, rateLimit: 10 },
   
-  // 高配置服务器 (4+核, 4+GB内存)
+  // High-end servers (4+ cores, 4+ GB memory)
   highEnd: { concurrent: 5, rateLimit: 20 }
 };
 ```
 
-### 🎯 生产环境优化
+### 🎯 Production Environment Optimization
 
-#### 反向代理配置（Nginx）
-``nginx
+#### Reverse Proxy Configuration (Nginx)
+```nginx
 server {
     listen 80;
     server_name your-domain.com;
@@ -536,9 +539,9 @@ server {
 }
 ```
 
-#### 环境变量配置
+#### Environment Variables Configuration
 ```bash
-# 创建 .env 文件
+# Create .env file
 PORT=3000
 NODE_ENV=production
 MAX_CONCURRENT_REQUESTS=3
@@ -546,82 +549,82 @@ MAX_REQUESTS_PER_MINUTE=10
 TEMP_CLEANUP_INTERVAL=30
 ```
 
-## 🚀 项目优势
+## 🚀 Project Advantages
 
-### ✅ 技术优势
-- **现代架构**：Node.js + Express + Docker 现代化技术栈
-- **容器化隔离**：环境一致性和安全隔离
-- **一键部署**：Docker Compose零配置部署
-- **生产就绪**：完整的安全配置、监控和日志
-- **高可移植**：支持任何Docker环境，云原生架构
+### ✅ Technical Advantages
+- **Modern Architecture**: Node.js + Express + Docker modern tech stack
+- **Container Isolation**: Environment consistency and security isolation
+- **One-Click Deployment**: Docker Compose zero-configuration deployment
+- **Production Ready**: Complete security configuration, monitoring, and logging
+- **High Portability**: Supports any Docker environment, cloud-native architecture
 
-### 🛡️ 安全优势
-- **本地处理**：证书生成全程本地化，数据不出服务器
-- **权限控制**：非root用户运行，最小权限原则
-- **自动清理**：敏感文件自动清理，防止泄露
-- **输入验证**：完整的参数校验和XSS防护
-- **容器安全**：安全配置的Docker容器运行
+### 🛡️ Security Advantages
+- **Local Processing**: Certificate generation entirely local, data never leaves server
+- **Permission Control**: Non-root user execution, least privilege principle
+- **Auto Cleanup**: Sensitive files automatically cleaned to prevent leakage
+- **Input Validation**: Complete parameter validation and XSS protection
+- **Container Security**: Securely configured Docker container execution
 
-### 🎨 用户体验
-- **现代界面**：科技苹果风格，视觉体验优秀
-- **响应式设计**：完美适配各种设备
-- **智能提示**：详细的操作指导和错误提示
-- **实时反馈**：队列状态、处理进度实时显示
-- **一键操作**：证书生成、下载一键完成
+### 🎨 User Experience
+- **Modern Interface**: Apple tech-style with excellent visual experience
+- **Responsive Design**: Perfect adaptation for various devices
+- **Smart Hints**: Detailed operation guidance and error prompts
+- **Real-time Feedback**: Queue status and processing progress displayed in real-time
+- **One-Click Operation**: Certificate generation and download completed with one click
 
-## 📝 开源协议
+## 📝 Open Source License
 
-GPL-3.0 License - 详见 [LICENSE](LICENSE) 文件
+GPL-3.0 License - See [LICENSE](LICENSE) file for details
 
-本项目采用GNU通用公共许可证v3.0开源协议，这意味着：
-- ✅ 自由使用、修改和分发
-- ✅ 商业使用（需遵循协议条款）
-- ✅ 私人使用和研究
-- ⚠️ 修改后的衍生作品必须同样采用GPL-3.0协议开源
-- ⚠️ 分发时必须提供源代码或源代码获取方式
-- ⚠️ 必须保留原始版权声明和许可证声明
-
----
-
-## ⚠️ 重要声明
-
-### 使用限制
-此工具生成的证书**仅适用于**：
-- 🧪 开发环境测试
-- 📚 学习和研究
-- 🔒 内网环境使用
-- 🏠 个人项目测试
-
-### 生产环境建议
-生产环境请使用：
-- 🌟 Let's Encrypt（免费CA证书）
-- 🏢 商业CA机构证书（如DigiCert、GlobalSign）
-- ☁️ 云服务商证书服务（如AWS ACM、阿里云SSL）
+This project uses the GNU General Public License v3.0 open source license, which means:
+- ✅ Free to use, modify, and distribute
+- ✅ Commercial use (must comply with license terms)
+- ✅ Private use and research
+- ⚠️ Derivative works must also adopt GPL-3.0 license and be open source
+- ⚠️ Must provide source code or access method when distributing
+- ⚠️ Must retain original copyright and license notices
 
 ---
 
-## 🎉 项目状态
+## ⚠️ Important Notice
+
+### Usage Limitations
+Certificates generated by this tool are **only suitable for**:
+- 🧪 Development environment testing
+- 📚 Learning and research
+- 🔒 Internal network environment use
+- 🏠 Personal project testing
+
+### Production Environment Recommendations
+For production environments, please use:
+- 🌟 Let's Encrypt (free CA certificates)
+- 🏢 Commercial CA institution certificates (like DigiCert, GlobalSign)
+- ☁️ Cloud service provider certificate services (like AWS ACM, Alibaba Cloud SSL)
+
+---
+
+## 🎉 Project Status
 
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)](#)
 [![Test Coverage](https://img.shields.io/badge/Coverage-95%25-brightgreen.svg)](#)
 [![Docker Pulls](https://img.shields.io/badge/Docker-Ready-blue.svg)](#)
 [![Production Ready](https://img.shields.io/badge/Production-Ready-brightgreen.svg)](#)
 
-**✅ 已完成功能：**
-- ✅ 证书生成功能
-- ✅ 并发控制机制
-- ✅ 队列管理系统
-- ✅ 文件清理策略
-- ✅ 安全防护机制
-- ✅ Docker容器化
-- ✅ 现代化界面
-- ✅ API接口完整
-- ✅ 错误处理机制
-- ✅ 监控和日志
+**✅ Completed Features:**
+- ✅ Certificate generation functionality
+- ✅ Concurrency control mechanism
+- ✅ Queue management system
+- ✅ File cleanup strategy
+- ✅ Security protection mechanism
+- ✅ Docker containerization
+- ✅ Modern interface
+- ✅ Complete API endpoints
+- ✅ Error handling mechanism
+- ✅ Monitoring and logging
 
-**🚀 立即可用，生产环境就绪！**
+**🚀 Ready to use immediately, production environment ready!**
 
 ---
 
-*最后更新：2025-08-27*  
-*项目版本：v1.0.0*
+*Last Updated: 2025-08-27*  
+*Project Version: v1.0.0*
