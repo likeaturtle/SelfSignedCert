@@ -1,5 +1,7 @@
 # SSL证书生成器 Web工具
 
+<div align="center">
+
 🔒 **安全、便捷、专业的自签SSL证书生成工具**
 
 一个现代化的自签SSL证书生成Web工具，采用科技苹果风格设计，支持Docker容器化部署。本项目100%开源，所有证书生成过程在本地完成，确保数据安全。
@@ -9,19 +11,29 @@
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-生产就绪-brightgreen.svg)](#)
 
-## 📑 文档导航
+</div>
 
+## 📑 目录
+
+### 🚀 快速上手
 - [⚡ 快速开始](#-快速开始)
-- [✨ 功能特点](#-功能特点)
 - [🏗️ 部署方式](#️-部署方式)
 - [📋 使用指南](#-使用指南)
+
+### 📖 功能介绍  
+- [✨ 功能特点](#-功能特点)
 - [🔧 API接口](#-api接口)
+- [🎯 队列管理](#-队列管理)
+
+### 🛡️ 安全与性能
 - [🛡️ 安全特性](#️-安全特性)
 - [⚙️ 并发控制](#️-并发控制)
-- [🎯 队列管理](#-队列管理)
-- [🔍 故障排除](#-故障排除)
-- [🏗️ 项目架构](#️-项目架构)
 - [📊 性能监控](#-性能监控)
+
+### 🔧 开发与维护
+- [🏗️ 项目架构](#️-项目架构)
+- [🔍 故障排除](#-故障排除)
+- [🤝 参与贡献](#-参与贡献)
 
 ## ⚡ 快速开始
 
@@ -55,7 +67,6 @@ npm start
 ## ✨ 功能特点
 
 ### 🔒 安全优先
-- **本地生成**：所有证书生成过程在本地完成，数据绝不上传
 - **权限控制**：非root用户运行容器，遵循最小权限原则
 - **自动清理**：临时文件1小时后自动清理，下载后1分钟延迟清理
 - **输入验证**：完整的参数验证和XSS防护机制
@@ -66,27 +77,29 @@ npm start
 - **响应式布局**：完美适配桌面、平板、移动设备
 - **横版设计**：左右分栏布局，信息层次清晰
 - **动画效果**：流畅的状态反馈和交互动画
-- **用户体验**：智能提示、实时状态更新
 
 ### ⚡ 高性能架构
 - **并发控制**：智能3并发限制，每分钟10请求速率控制
 - **队列管理**：超负荷时自动排队，显示等待时间和位置
 - **资源管理**：自动内存清理，临时文件生命周期管理
 - **容器化**：Docker部署，环境隔离，一键启动
-- **健康监控**：实时健康检查和自动重启机制
 
 ### 📦 开发友好
 - **一键部署**：Docker Compose支持，零配置启动
 - **热重载**：开发模式支持文件变更自动重启
 - **完整API**：RESTful接口设计，支持编程调用
 - **日志记录**：详细的操作日志和错误追踪
-- **测试支持**：包含并发测试和压力测试脚本
 
 ## 🏗️ 部署方式
 
 ### 🐳 Docker部署（推荐）
+
 ```bash
-# 快速启动
+# 克隆项目
+git clone <repository-url>
+cd ssl-cert-web
+
+# 一键启动
 docker-compose up -d
 
 # 查看运行状态
@@ -100,6 +113,7 @@ docker-compose down
 ```
 
 ### ☁️ 云服务器部署
+
 ```bash
 # 1. 上传项目到服务器
 scp -r ssl-cert-web user@server:/path/to/
@@ -108,7 +122,7 @@ scp -r ssl-cert-web user@server:/path/to/
 cd /path/to/ssl-cert-web
 docker-compose up -d
 
-# 3. 配置防火墙（根据系统选择）
+# 3. 配置防火墙
 # Ubuntu/Debian:
 sudo ufw allow 3000/tcp
 # CentOS/RHEL:
@@ -117,6 +131,7 @@ sudo firewall-cmd --reload
 ```
 
 ### 💻 本地开发部署
+
 ```bash
 # 安装依赖
 npm install
@@ -132,6 +147,7 @@ nohup npm start > app.log 2>&1 &
 ```
 
 ### 🔧 高级配置
+
 ```bash
 # 自定义端口
 PORT=8080 npm start
@@ -143,21 +159,31 @@ NODE_ENV=production npm start
 docker-compose up -d --build  # 强制重新构建
 ```
 
+### 🌐 访问应用
+
+部署完成后，可以通过以下地址访问：
+
+- **主界面**：http://localhost:3000
+- **健康检查**：http://localhost:3000/api/health
+- **队列状态**：http://localhost:3000/api/queue-status
+
 ## 📋 使用指南
 
-### 基本配置
+### 🗥️ 配置选项
+
+#### 基本配置
 - **主域名**：证书的主要域名（必填）
 - **证书名称**：在浏览器中显示的名称（可选）
 - **泛域名**：支持*.domain.com格式（可选）
 - **IP地址**：支持多个IP地址，逗号分隔（可选）
 
-### CA配置
+#### CA配置
 - **CA名称**：证书颁发机构名称（默认：ACENova CA）
 - **CA组织**：颁发机构组织名称（默认：ACENova）
 - **CA单位**：颁发机构部门（默认：ACENova Department）
 - **国家代码**：两位国家代码（默认：CN）
 
-### 高级配置
+#### 高级配置
 - **加密位数**：2048位或4096位（默认：2048位）
 - **有效期**：证书有效期天数（默认：365天）
 
@@ -167,14 +193,41 @@ docker-compose up -d --build  # 强制重新构建
 3. 等待生成完成（支持队列排队）
 4. 点击"下载证书包"获取ZIP文件
 
-### 证书文件说明
+### 📝 证书文件说明
+
 下载的ZIP包含以下文件：
+
 - `ca-cert.pem` - CA根证书（需要安装到系统信任根证书）
 - `ca-key.pem` - CA私钥
 - `server-cert.pem` - 服务器证书
 - `server-key.pem` - 服务器私钥
 - `fullchain.pem` - 完整证书链
 - `openssl.cnf` - OpenSSL配置文件
+
+### 🛡️ 安装证书指南
+
+#### Windows系统
+1. 双击 `ca-cert.pem` 文件
+2. 点击"安装证书"
+3. 选择"本地计算机"
+4. 将证书放入"受信任的根证书颁发机构"
+
+#### macOS系统
+1. 双击 `ca-cert.pem` 文件，打开钥匙串访问
+2. 在证书上右键点击，选择"显示简介"
+3. 展开"信任"选项
+4. 设置为"始终信任"
+
+#### Linux系统
+```bash
+# Ubuntu/Debian
+sudo cp ca-cert.pem /usr/local/share/ca-certificates/ssl-cert-ca.crt
+sudo update-ca-certificates
+
+# CentOS/RHEL
+sudo cp ca-cert.pem /etc/pki/ca-trust/source/anchors/
+sudo update-ca-trust
+```
 
 ## 🔧 API接口
 
@@ -215,10 +268,8 @@ GET /api/health
 ## 🛡️ 安全特性
 
 ### 数据安全
-- 所有证书生成在本地完成
-- 临时文件自动清理（1小时后清理）
-- 无数据上传到外部服务器
-- 私钥文件权限保护
+- 临时文件未下载情况下**1小时**后自动清理
+- 用户下载证书zip压缩包后**1**分钟后自动清理
 
 ### 容器安全
 - 非root用户运行（nodejs:1001）
@@ -449,9 +500,8 @@ console.log('跳过正在处理的目录: c008cdb3-e712-4b77-9eb2-feeb880cd3f5')
 
 #### 系统资源
 - **CPU**：建议2核心以上
-- **内存**：建议2GB以上
-- **磁盘**：预留5GB空间给临时文件
-- **网络**：建议100Mbps以上带宽
+- **内存**：建议1GB以上
+- **磁盘**：建议为临时文件预留5GB空间
 
 #### 并发调优
 ```javascript
@@ -471,7 +521,7 @@ const performanceConfig = {
 ### 🎯 生产环境优化
 
 #### 反向代理配置（Nginx）
-```nginx
+``nginx
 server {
     listen 80;
     server_name your-domain.com;
@@ -531,46 +581,6 @@ GPL-3.0 License - 详见 [LICENSE](LICENSE) 文件
 - ⚠️ 分发时必须提供源代码或源代码获取方式
 - ⚠️ 必须保留原始版权声明和许可证声明
 
-## 🤝 参与贡献
-
-我们欢迎社区贡献！参与方式：
-
-### 🐛 问题反馈
-- 发现bug？[提交Issue](../../issues)
-- 功能建议？[讨论区交流](../../discussions)
-- 安全问题？请发送邮件至安全团队
-
-### 💻 代码贡献
-1. Fork本项目
-2. 创建特性分支 (`git checkout -b feature/amazing-feature`)
-3. 提交更改 (`git commit -m 'Add amazing feature'`)
-4. 推送分支 (`git push origin feature/amazing-feature`)
-5. 发起Pull Request
-
-### 📚 文档改进
-- 修复文档错误
-- 添加使用示例
-- 翻译到其他语言
-
-## 📞 技术支持
-
-遇到问题？多种方式获取帮助：
-
-### 🔍 自助排查
-1. 查看 [故障排除](#-故障排除) 部分
-2. 检查应用日志 `docker logs ssl-cert-generator`
-3. 查看健康检查状态 `curl http://localhost:3000/api/health`
-
-### 💬 社区支持
-- [GitHub Issues](../../issues) - 问题反馈和讨论
-- [GitHub Discussions](../../discussions) - 功能讨论和交流
-- [项目Wiki](../../wiki) - 详细文档和教程
-
-### 📧 联系我们
-- 技术问题：通过GitHub Issues反馈
-- 商业合作：contact@example.com
-- 安全问题：security@example.com
-
 ---
 
 ## ⚠️ 重要声明
@@ -597,7 +607,7 @@ GPL-3.0 License - 详见 [LICENSE](LICENSE) 文件
 [![Docker Pulls](https://img.shields.io/badge/Docker-Ready-blue.svg)](#)
 [![Production Ready](https://img.shields.io/badge/Production-Ready-brightgreen.svg)](#)
 
-**✅ 功能完成度：100%**
+**✅ 已完成功能：**
 - ✅ 证书生成功能
 - ✅ 并发控制机制
 - ✅ 队列管理系统
@@ -613,5 +623,5 @@ GPL-3.0 License - 详见 [LICENSE](LICENSE) 文件
 
 ---
 
-*最后更新：2025-08-26*  
+*最后更新：2025-08-27*  
 *项目版本：v1.0.0*
