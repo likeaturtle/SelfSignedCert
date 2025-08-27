@@ -1,0 +1,23 @@
+{
+  "name": "ssl-cert-generator",
+  "version": "1.0.0",
+  "description": "Self-signed SSL certificate generator web tool",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "archiver": "^7.0.1",
+    "fs-extra": "^11.2.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["ssl", "certificate", "self-signed", "web-tool"],
+  "author": "SSL Cert Generator",
+  "license": "GPL-3.0"
+}

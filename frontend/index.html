@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSL证书生成器 - 安全、便捷、专业</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 顶部导航 - 横向铺满 -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="logo.webp" alt="SSL证书生成器" class="logo-icon">
+                <h1>SSL证书生成器</h1>
+            </div>
+            <div class="subtitle">安全、便捷、专业的自签证书生成工具</div>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="main">
+        <div class="container">
+            <div class="form-container">
+                <form id="certForm" class="cert-form">
+                    <!-- 上半部分：基本配置和CA配置左右分栏 -->
+                    <div class="form-upper">
+                        <div class="form-layout">
+                            <!-- 左侧：基本配置 -->
+                            <div class="form-left">
+                                <section class="form-section">
+                                    <h2 class="section-title">基本配置</h2>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="domain">主域名</label>
+                                            <input type="text" id="domain" name="domain" placeholder="例如: example.com">
+                                            <div class="help-text">证书的主要域名</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="certName">证书名称</label>
+                                            <input type="text" id="certName" name="certName" placeholder="留空则使用主域名">
+                                            <div class="help-text">在浏览器中显示的名称</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="wildcardDomain">泛域名</label>
+                                            <input type="text" id="wildcardDomain" name="wildcardDomain" placeholder="例如: example.com">
+                                            <div class="help-text">支持*.domain.com格式</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ips">IP地址</label>
+                                            <input type="text" id="ips" name="ips" placeholder="例如: 192.168.1.100,10.0.0.1">
+                                            <div class="help-text">多个IP用逗号分隔</div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
+                            <!-- 右侧：CA配置 -->
+                            <div class="form-right">
+                                <section class="form-section">
+                                    <h2 class="section-title">CA配置</h2>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="caName">CA名称</label>
+                                            <input type="text" id="caName" name="caName" placeholder="默认: ACENova CA">
+                                            <div class="help-text">证书颁发机构名称</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="caOrg">CA组织</label>
+                                            <input type="text" id="caOrg" name="caOrg" placeholder="默认: ACENova">
+                                            <div class="help-text">颁发机构组织名称</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="caUnit">CA单位</label>
+                                            <input type="text" id="caUnit" name="caUnit" placeholder="默认: ACENova Department">
+                                            <div class="help-text">颁发机构部门</div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="country">国家代码</label>
+                                            <input type="text" id="country" name="country" placeholder="默认: CN" maxlength="2">
+                                            <div class="help-text">两位国家代码</div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 下半部分：高级配置、操作按钮和说明信息 -->
+                    <div class="form-lower">
+                        <!-- 高级配置 -->
+                        <section class="form-section form-section-advanced">
+                            <h2 class="section-title">高级配置</h2>
+                            <div class="form-grid form-grid-horizontal">
+                                <div class="form-group">
+                                    <label for="sslSize">加密位数</label>
+                                    <div class="custom-select" id="sslSizeSelect">
+                                        <div class="select-trigger">
+                                            <span class="select-text">默认 (2048位)</span>
+                                            <div class="select-arrow">▼</div>
+                                        </div>
+                                        <div class="select-options">
+                                            <div class="select-option active" data-value="">默认 (2048位)</div>
+                                            <div class="select-option" data-value="4096">4096位</div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="sslSize" name="sslSize" value="">
+                                    <div class="help-text">更高位数更安全但更慢</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sslDate">有效期(天)</label>
+                                    <input type="number" id="sslDate" name="sslDate" placeholder="默认: 365天" min="1" max="36500">
+                                    <div class="help-text">证书有效期</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 操作按钮 -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="resetBtn">重置表单</button>
+                            <button type="submit" class="btn btn-primary" id="generateBtn">
+                                <span class="btn-text">生成证书</span>
+                                <div class="btn-loader" style="display: none;">
+                                    <div class="spinner"></div>
+                                </div>
+                            </button>
+                        </div>
+
+                        <!-- 说明信息 -->
+                        <div class="form-info">
+                            <div class="info-box">
+                                <h3>ℹ️ 使用提示</h3>
+                                <div class="info-content">
+                                    <p>1. 基本配置须至少填写主域名，证书名称置空会自动填入主域名，泛域名及IP地址置空则生成证书不含该两部分信息。</p>
+                                    <p>2. CA配置、高级配置置空则按照输入框提示内容带入证书生成。</p>
+                                    <p>3. 为方便测试环境使用，生成证书主域名自带localhost。</p>
+                                    <p>4. 点击生成证书后，系统将在云端服务器生成相应证书并提供下载，服务器将在证书生成完毕后的一小时内删除相关证书，请及时下载并安全保存。</p>
+                                    <p>5. 本项目所提供的自签SSL证书，仅适用于内部测试、开发调试等非公开网络环境，严禁用于生产环境及公共服务场景。</p>
+                                    <p>6. 自签证书未经过权威CA机构验证，可能存在证书信任风险、数据传输安全隐患，使用过程中因证书问题导致的信息泄露、系统故障等损失，用户需自行评估使用风险，确保符合相关法律法规及安全规范，因违规使用引发的一切法律责任与后果，均由用户自行承担。</p>
+                                    <p>7. 本项目为开源项目，开源地址：<a href="https://www.github.com" target="_blank" rel="noopener noreferrer">www.github.com</a>，欢迎进行star/fork/issue等。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 结果区域 - 横向布局 -->
+            <div class="result-container" id="resultContainer" style="display: none;">
+                <div class="result-header">
+                    <h2>证书生成成功</h2>
+                    <div class="success-icon">✓</div>
+                </div>
+                <p class="result-message">您的SSL证书已成功生成，包含以下文件：</p>
+                <ul class="file-list">
+                    <li>CA证书 (ca-cert.pem)</li>
+                    <li>CA私钥 (ca-key.pem)</li>
+                    <li>服务器证书 (server-cert.pem)</li>
+                    <li>服务器私钥 (server-key.pem)</li>
+                    <li>完整证书链 (fullchain.pem)</li>
+                </ul>
+                
+                <!-- 按钮放在文件列表下方 -->
+                <div class="download-section">
+                    <button class="btn btn-download" id="downloadBtn">
+                        <span>📥 下载证书包</span>
+                    </button>
+                    <button class="btn btn-secondary" id="newCertBtn">生成新证书</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 - 横向铺满，固定在底部 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Copyright © 2025 ACENova. All Rights Reserved. 诚诺通 版权所有 粤ICP备2024254169号 粤公网安备44030002007243号</p>
+        </div>
+    </footer>
+
+    <!-- 提示框 -->
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <span class="notification-icon"></span>
+            <span class="notification-text"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
